@@ -1,0 +1,55 @@
+<body>
+
+
+    <div class="background-container">
+        <div class="icon">
+            <a href="https://www.freepnglogos.com/pics/medical-logo-png" title="Image from freepnglogos.com"> <img
+                    src="https://www.freepnglogos.com/uploads/medical-logo-png-5.png" width="200"
+                    alt="medical logo png" /></a>
+            <h1 class="logo">
+                Global Health <br> Hospitals
+            </h1>
+        </div>
+        <div class="fieldset-container">
+            <div class="content">
+                <h1>
+                    Committed to Caring <br> <span>Since 1926</span><br>
+                </h1>
+                <p class="par">
+                    Helping one person might not change the world,<br> but it could
+                    change the world for one person.
+                </p>
+
+            </div>
+            <div id="container">
+                <h2>LOGIN</h2>
+
+                <form [formGroup]="loginForm" (ngSubmit)="loginCredentails()">
+
+                    <fieldset>
+                        <label for="userName" class="form-label">USERNAME</label>
+                        <input type="text" placeholder="Enter UserName.." name="userName" [formControlName]="'userName'"
+                            class="form-control" minlength="3"
+                            [ngClass]="{'is-invalid': formControls['userName'].touched && formControls['userName'].invalid}">
+
+                    </fieldset>
+                    <fieldset>
+                        <label for="password" class="form-label">PASSWORD</label>
+                        <input type="password" placeholder="Enter password.." name="password"
+                            [formControlName]="'password'" minlength="3"
+                            [ngClass]="{'is-invalid': formControls['password'].touched && formControls['password'].invalid}">
+
+                    </fieldset>
+                    <fieldset>
+                        <input type="submit" value="LOGIN" class="btn-submit" />
+                    </fieldset>
+                    <div *ngIf="error" style="color: rgb(255, 255, 255); text-align: left;">
+                        {{error}}
+                    </div>
+
+                </form>
+            </div>
+
+        </div>
+    </div>
+</body>

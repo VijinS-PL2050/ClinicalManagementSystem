@@ -1,1 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
+.background-container {
+    background-image: linear-gradient(rgba(255, 255, 255, 0.5), rgba(91, 151, 116, 0.5)),
+        url('./assets/image/photo.jpg');
+    /* Add any other background properties you want */
+    background-repeat: no-repeat;
+    width: auto;
+    height: 100vh;
+    background-size: cover;
+    margin: 0;
+}
