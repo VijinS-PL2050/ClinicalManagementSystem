@@ -2,13 +2,14 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { User } from './user';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient, private router:Router) { }
 
   public loginVerify(user: User) {
     //calling the api for checking username and password
@@ -30,5 +31,12 @@ export class AuthService {
         console.error(response.error);
       }
     });
+  }
+  public logout(){
+    localStorage.removeItem('rId');
+    localStorage.removeItem('uId');
+    localStorage.removeItem('userName');
+    localStorage.removeItem('userId');
+    this.router.navigate(['login']);
   }
 }

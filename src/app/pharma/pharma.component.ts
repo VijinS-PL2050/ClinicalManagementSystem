@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../login/shared/auth.service';
 
 @Component({
   selector: 'app-pharma',
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PharmaComponent implements OnInit {
 
-  constructor() { }
+  constructor(private authService: AuthService) { }
 
   ngOnInit(): void {
+  }
+  public logout(){
+    this.authService.logout();
   }
 
 }

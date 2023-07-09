@@ -1,0 +1,82 @@
+<div class="form-2">
+    <h2>Basic Details</h2>
+    <hr>
+    <form name="empForm" #form="ngForm" autocomplete="off" (ngSubmit)="onSubmit(form)">
+        <input type="hidden" name="pid" [(ngModel)]="patientService.formData.pid">
+        <input type="hidden" name="mrNo" [(ngModel)]="patientService.formData.mrNo">
+        <div class="fieldset-container">
+            <fieldset>
+                <label>NAME :</label>
+                <input type="text" name="patientName" #patientName="ngModel"
+                    [(ngModel)]="patientService.formData.patientName" placeholder="Enter Full Name" minlength="3"
+                    maxlength="20" pattern="[A-Za-z][A-Za-z\s]{2,30}[A-Za-z]$" required>
+                <div class="validation-error" *ngIf="patientName.touched&& patientName.invalid">
+                    <div>please enter valid name min: 3 & max: 20</div>
+                </div>
+            </fieldset>
+            <fieldset>
+                <label>PHONE :</label>
+                <input type="text" name="patientPhone" #patientPhone="ngModel"
+                    [(ngModel)]="patientService.formData.patientPhone" placeholder="Enter Phone number"
+                    pattern="^(\+91[\-\s]?)?0?(91)?[789]\d{9}$" required>
+                <div class="validation-error" *ngIf="patientPhone.touched&& patientPhone.invalid">
+                    <div>please provide valid phone number</div>
+                </div>
+            </fieldset>
+        </div>
+        <div class="fieldset-container">
+            <fieldset>
+                <label>ADDRESS :</label>
+                <input type="text" name="patientAddress" #patientAddress="ngModel"
+                    [(ngModel)]="patientService.formData.patientAddress" placeholder="Enter Address" minlength="4"
+                    maxlength="20" pattern="[A-Za-z\s]{4,}$" required>
+                <div class="validation-error" *ngIf="patientAddress.touched&& patientAddress.invalid">
+                    <div>please enter valid address min: 4 & max: 20</div>
+                </div>
+            </fieldset>
+            <fieldset>
+                <label>AGE :</label>
+                <input name="patientAge" #patientAge="ngModel" [(ngModel)]="patientService.formData.patientAge"
+                    placeholder="Enter Age" type="number" min="0" max="100" required>
+                <div class="validation-error" *ngIf="patientAge.touched&& patientAge.invalid">
+                    <div>please enter valid age b\w 0 - 100</div>
+                </div>
+            </fieldset>
+        </div>
+        <div class="fieldset-container">
+            <fieldset>
+                <label>GENDER :</label>
+                <select name="patientGender" id="patientGender" required #patientGender="ngModel"
+                    [(ngModel)]="patientService.formData.patientGender">
+                    <option value=0 disabled> Choose Gender</option>
+                    <option value="MALE">MALE</option>
+                    <option value="FEMALE">FEMALE</option>
+                    <option value="OTHER">OTHER</option>
+                </select>
+                <div class="validation-error" *ngIf="patientGender.touched && patientGender.invalid">
+                    <div>Department is required</div>
+                </div>
+            </fieldset>
+            <fieldset>
+                <label>BLOOD GROUP :</label>
+                <select name="patientBlood" id="patientBlood" required #patientBlood="ngModel"
+                    [(ngModel)]="patientService.formData.patientBlood">
+                    <option value=0 disabled> Choose Blood Group</option>
+                    <option value="O+">O+</option>
+                    <option value="O-">O-</option>
+                    <option value="A+">A+</option>
+                    <option value="A-">A-</option>
+                    <option value="B+">B+</option>
+                    <option value="B-">B-</option>
+                    <option value="AB+">AB+</option>
+                    <option value="AB-">AB-</option>
+
+                </select>
+                <div class="validation-error" *ngIf="patientBlood.touched && patientBlood.invalid">
+                    <div>Department is required</div>
+                </div>
+            </fieldset>
+        </div>
+        <input type="submit" [disabled]="!(form.valid && form.dirty)" value="ADD PATIENT" class="btn-submit">
+    </form>
+</div>

@@ -20,11 +20,11 @@ body {
 }
 
 #container {
-	background-color: #696969;
+	background: rgba(0, 0, 0, 0.6);
 	border-radius: 5px;
 	padding: 20px;
 	margin: 20px auto;
-	max-width: 800px;
+	max-width: 1150px;
 	color: #000000;
 }
 
@@ -41,7 +41,7 @@ fieldset {
 .fieldset-container {
 	display: flex;
 	justify-content: space-between;
-    margin-top: 6%;
+
 }
 
 .fieldset-container fieldset {
@@ -89,10 +89,10 @@ input[type="submit"] {
 }
 
 .content {
-	width: 800px;
+	width: 250px;
 	color: #373737;
 	position: relative;
-	padding: 10px 100px;
+	margin-left: 3%;
 }
 
 .content .par {
@@ -141,10 +141,7 @@ input[type="submit"] {
 
 .content .btn {
 	display: block;
-	margin-bottom: 5%;
+	margin-top: 20%;
 	width: 200px;
 	height: 50px;
   }
-
-
-  
