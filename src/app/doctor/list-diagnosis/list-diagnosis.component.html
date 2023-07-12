@@ -1,0 +1,35 @@
+<div class="form-2">
+    <h2>LIST DIAGNOSIS</h2>
+    <hr>
+    <fieldset class="f2">
+        <input class="form-control" type="text" placeholder="Search text here.." [(ngModel)]="filter">
+    </fieldset>
+    <table>
+        <thead style="background-color: rgba(197, 14, 14, 0.397);">
+            <tr>
+                <th>DIAGNOSIS ID</th>
+                <th>MR NO</th>
+                <th>NAME</th>
+                <th>FINDOUT</th>
+                <th>ACTION</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr
+                *ngFor="let tempDia of diagnosisService.diagnosis | filter:filter | paginate:{itemsPerPage:6,currentPage:page}">
+                <td>{{tempDia.diagnosisId}}</td>
+                <td>{{tempDia.tokenGenarator.appointment.patientRecords.mrNo}}</td>
+                <td>{{tempDia.tokenGenarator.appointment.patientRecords.patientName}}</td>
+                <td>{{tempDia.findOut}}</td>
+                <td><a type="button" (click)="updateDiagnosis(tempDia.tid)" style="margin-left: 10px;"><i
+                            class="bi bi-pencil-square"
+                            style="font-size: 20px; -webkit-text-stroke-width: 0.2px; color: rgb(255, 115, 0); opacity: 1;"></i></a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div class="footer">
+    <pagination-controls (pageChange)="page=($event)"></pagination-controls>
+
+</div>

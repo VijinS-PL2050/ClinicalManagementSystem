@@ -30,6 +30,8 @@ export class ListPatientComponent implements OnInit {
       },err=>{console.log(err)});
     }
   }
+
+  
   bookAppointment(patId:number){
     console.log('appointment')
   }

@@ -1,0 +1,297 @@
+<div class="form-2">
+    <h2>Diagnosis Details</h2>
+    <hr>
+    <div>
+        <h2>Basics Details</h2>
+        <label class="l1">MR NO :<p>{{patientService.patient.mrNo}}</p></label>
+        <label class="l1">NAME :<p>{{patientService.patient.patientName}}</p></label>
+        <label class="l1">AGE :<p>{{patientService.patient.patientAge}}</p></label>
+        <label class="l1">GENDER :<p>{{patientService.patient.patientGender}}</p></label>
+        <label class="l1">BLOOD :<p>{{patientService.patient.patientBlood}}</p></label>
+    </div>
+    <hr>
+    <div>
+        <h2>History</h2>
+        <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+            <input type="radio" class="btn-check" name="btnradio" id="btnradio1" (click)="toggleDetails()"
+                autocomplete="off">
+            <label class="btn btn-outline-primary" for="btnradio1">Diagnosis</label>
+
+            <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
+            <label class="btn btn-outline-primary" for="btnradio2" (click)="toggleDetailsMed()">Medicine</label>
+
+            <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off">
+            <label class="btn btn-outline-primary" for="btnradio3" (click)="toggleDetailsTest()">Test</label>
+        </div>
+        <div *ngIf="showDetails">
+            <caption>Previous Diagnosis</caption>
+            <caption>
+                <hr>
+            </caption>
+            <table>
+                <thead style="background-color: rgba(197, 14, 14, 0.397);">
+                    <tr>
+                        <th>DIAGNOSIS ID</th>
+                        <th>DATE</th>
+                        <th>DEPARTMENT</th>
+                        <th>DOCTOR</th>
+                        <th>FIND OUT</th>
+                        <th>NOTE</th>
+                    </tr>
+
+                </thead>
+                <tbody>
+                    <tr *ngFor="let tempDiag of diagnosisService.diagnosis">
+                        <td>{{tempDiag.diagnosisId}}</td>
+                        <td>{{tempDiag.diagnosisDate}}</td>
+                        <td>{{tempDiag.tokenGenarator.appointment.doctorDepartment.departmentName}}</td>
+                        <td>{{tempDiag.tokenGenarator.appointment.doctorDetails.doctorName}}</td>
+                        <td>{{tempDiag.findOut}}</td>
+                        <td>{{tempDiag.notes}}</td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+        <div *ngIf="showDetailsMed">
+            <caption>Previous Medicine</caption><hr>
+            <table>
+                <thead style="background-color: rgba(197, 14, 14, 0.397);">
+                    <tr>
+                        <th>MEDCINE ID</th>
+                        <th>MEDCINE NAME</th>
+                        <th>PRESCRIPTION DATE</th>
+                        <th>DOSAGE</th>
+                        <th>NO OF DAYS</th>
+                        <th>DEPARTMENT</th>
+                        <th>DOCTOR</th>
+                    </tr>
+
+                </thead>
+                <tbody>
+                    <tr *ngFor="let tempDiag of medicinePrescriptionService.medicinePrescription">
+                        <td>{{tempDiag.medicinePrescriptionId}}</td>
+                        <td>{{tempDiag.medicinesStock.medicineName}}</td>
+                        <td>{{tempDiag.medicinePrescriptionDate}}</td>
+                        <td>{{tempDiag.dosage.dosage}}</td>
+                        <td>{{tempDiag.noOfDay}}</td>
+                        <td>{{tempDiag.diagnosis.tokenGenarator.doctorDetails.doctorDepartment.departmentName}}</td>
+                        <td>{{tempDiag.diagnosis.tokenGenarator.doctorDetails.doctorName}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div *ngIf="showDetailsTest">
+            <caption>Previous Test</caption> <hr>
+            <table>
+                <thead style="background-color: rgba(197, 14, 14, 0.397);">
+                    <tr>
+                        <th>REPORT ID</th>
+                        <th>REPORT DATE </th>
+                        <th>TEST NAME</th>
+                        <th>HIGH VALUE</th>
+                        <th>LOW VALUE</th>
+                        <th>ACTUAL VALUE</th>
+                        <th>UNIT</th>
+                        <th>DEPARTMENT</th>
+                        <th>DOCTOR</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let tempTest of testreportservice.testReport">
+                        <td>{{tempTest.reportId}}</td>
+                        <td>{{tempTest.reportDate}}</td>
+                        <td>{{tempTest.testPrescription.tests.testName}}</td>
+                        <td>{{tempTest.testPrescription.tests.highValue}}</td>
+                        <td>{{tempTest.testPrescription.tests.lowValue}}</td>
+                        <td>{{tempTest.actualValue}}</td>
+                        <td>{{tempTest.testPrescription.tests.unit}}</td>
+                        <td>{{tempTest.testPrescription.diagnosis.tokenGenarator.appointment.doctorDepartment.departmentName}}
+                        </td>
+                        <td>{{tempTest.testPrescription.diagnosis.tokenGenarator.appointment.doctorDetails.doctorName}}
+                        </td>
+                    </tr>
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+</div>
+<hr>
+<h2>Diagnosis</h2>
+<form name="daiForm" #form="ngForm" autocomplete="off" (ngSubmit)="onSubmit(form)">
+    <input type="hidden" name="pid" [(ngModel)]="diagnosisService.formData.diId">
+    <input type="hidden" name="tid" [(ngModel)]="diagnosisService.formData.tid">
+    <div class="fieldset-container">
+        <fieldset>
+            <label>FIND OUT :</label>
+            <input type="text" name="findOut" #findOut="ngModel" [(ngModel)]="diagnosisService.formData.findOut"
+                placeholder="Enter symptoms" minlength="3" maxlength="30" pattern="[A-Za-z][ A-Za-z\s]{3,30}[ A-Za-z]$"
+                required>
+            <div class="validation-error" *ngIf="findOut.touched&& findOut.invalid">
+                <div>please enter valid symptoms min: 3 & max: 30</div>
+            </div>
+        </fieldset>
+        <fieldset>
+            <label>NOTE :</label>
+            <textarea id="w3review" name="w3review" rows="3" name="notes" #notes="ngModel"
+                [(ngModel)]="diagnosisService.formData.notes" placeholder="Enter notes" minlength="3" maxlength="100"
+                pattern="[A-Za-z][ A-Za-z\s]{3,100}[ A-Za-z]$" required></textarea>
+            <div class="validation-error" *ngIf="notes.touched&& notes.invalid">
+                <div>please provide notes min:3 & max: 100</div>
+            </div>
+        </fieldset>
+    </div>
+    <input type="submit" [disabled]="!(form.valid && form.dirty)" value="SUBMIT" class="btn-submit">
+</form>
+<hr>
+<div>
+    <div class="fieldset-container" style="width: 40%;">
+        <fieldset>
+            <input type="checkbox" class="btn-check" id="btn-check-outlined" autocomplete="off">
+            <label class="btn btn-outline-primary" for="btn-check-outlined" (click)="toggleFormMed()"
+                style="width: 100%;  padding-left: 18%;">ADD MEDICINE</label>
+
+        </fieldset>
+        <fieldset>
+            <input type="checkbox" class="btn-check" id="btn-check-outlined-1" autocomplete="off">
+            <label class="btn btn-outline-primary" for="btn-check-outlined-1" (click)="toggleFormTest()"
+                style="width: 100%; padding-left: 30%;">ADD TEST</label>
+        </fieldset>
+
+
+
+    </div>
+
+    <div *ngIf="showFormMed">
+
+
+
+        <div class="fieldset-container">
+            <fieldset>
+                <form name="medForm" #form="ngForm" autocomplete="off" (ngSubmit)="onSubmitForMed(form)">
+                    <input type="hidden" name="mpId" [(ngModel)]="medicinePrescriptionService.formData.mpId">
+                    <input type="hidden" name="medicinePrescriptionDate"
+                        [(ngModel)]="medicinePrescriptionService.formData.medicinePrescriptionDate">
+                    <label>MEDICINE NAME :</label>
+                    <select name="msId" id="msId" class="form-control" required #msId="ngModel"
+                        [(ngModel)]="medicinePrescriptionService.formData.msId">
+                        <option value=0 disabled> Choose Medicine</option>
+                        <option *ngFor="let med of diagnosisService.medicine" value="{{med.msId}}">
+                            {{med.medicineName}}</option>
+                    </select>
+                    <div class="validation-error" *ngIf="msId.touched&& msId.invalid">
+                        <div>please select valid medicine</div>
+                    </div>
+                    <label>DOSAGE :</label>
+                    <select name="dosId" id="dosId" class="form-control" required #dosId="ngModel"
+                        [(ngModel)]="medicinePrescriptionService.formData.dosId">
+                        <option value=0 disabled> Choose Dosage</option>
+                        <option *ngFor="let dos of diagnosisService.dosage" value="{{dos.dosId}}">
+                            {{dos.dosage}}
+                        </option>
+                    </select>
+                    <div class="validation-error" *ngIf="dosId.touched&& dosId.invalid">
+                        <div>please select valid dosage</div>
+                    </div>
+                    <label>NO OF DAYS :</label>
+                    <input name="noOfDay" #noOfDay="ngModel" [(ngModel)]="medicinePrescriptionService.formData.noOfDay"
+                        placeholder="Enter no of days" type="number" min="1" max="10" required>
+                    <div class="validation-error" *ngIf="noOfDay.touched&& noOfDay.invalid">
+                        <div>please enter valid day b\w 1 - 10</div>
+                    </div>
+                    <input type="submit" [disabled]="!(form.valid && form.dirty)" value="Add Medicine"
+                        class="btn-submit" style="width: 40%;">
+                </form>
+
+            </fieldset>
+            <fieldset>
+                <caption style="padding-left: 10%;">Current Medicine</caption><hr>
+            <table>
+                <thead style="background-color: rgba(197, 14, 14, 0.397);">
+                    <tr>
+                        <th>MEDCINE NAME</th>
+                        <th>DOSAGE</th>
+                        <th>NO OF DAYS</th>
+                        <th>ACTION</th>
+                    </tr>
+
+                </thead>
+                <tbody>
+                    <tr *ngFor="let tempMed of medicinePrescriptionForCur">
+                        <td>{{tempMed.medicinesStock.medicineName}}</td>
+                        <td>{{tempMed.dosage.dosage}}</td>
+                        <td>{{tempMed.noOfDay}}</td>
+                        <td><a type="button" (click)="deleteMedicine(tempMed.mpId)" style="margin-left: 10px;"><i
+                            class="bi bi-trash"
+                            style="font-size: 20px; -webkit-text-stroke-width: 0.2px; color: rgb(255, 115, 0); opacity: 1;"></i></a></td>
+                    </tr>
+                </tbody>
+            </table>
+                
+
+            </fieldset>
+
+            
+
+        </div>
+
+
+
+
+
+    </div>
+
+</div>
+
+
+
+<hr>
+<div>
+
+    <div *ngIf="showFormTest">
+
+        <form name="medForm" #form="ngForm" autocomplete="off" (ngSubmit)="onSubmitForTest(form)">
+            <input type="hidden" name="tpId" [(ngModel)]="testPrescriptionService.formData.tpId">
+            <input type="hidden" name="testDay" [(ngModel)]="testPrescriptionService.formData.testDay">
+            <div class="fieldset-container">
+                <fieldset>
+                    <label>TEST NAME :</label>
+                    <select name="ttId" id="ttId" class="form-control" required #ttId="ngModel"
+                        [(ngModel)]="testPrescriptionService.formData.ttId">
+                        <option value=0 disabled> Choose Test</option>
+                        <option *ngFor="let test of diagnosisService.test" value="{{test.ttId}}">
+                            {{test.testName}}</option>
+                    </select>
+                    <div class="validation-error" *ngIf="ttId.touched&& ttId.invalid">
+                        <div>please choose valid test</div>
+                    </div>
+                </fieldset>
+                <fieldset>
+
+                </fieldset>
+
+                <fieldset>
+                    <label>TEST NAME :</label>
+                    <select name="ttId" id="ttId" class="form-control" required #ttId="ngModel"
+                        [(ngModel)]="testPrescriptionService.formData.ttId">
+                        <option value=0 disabled> Choose Test</option>
+                        <option *ngFor="let test of diagnosisService.test" value="{{test.ttId}}">
+                            {{test.testName}}</option>
+                    </select>
+                    <div class="validation-error" *ngIf="ttId.touched&& ttId.invalid">
+                        <div>please choose valid test</div>
+                    </div>
+                </fieldset>
+                <fieldset>
+
+                </fieldset>
+
+
+            </div>
+            <input type="submit" [disabled]="!(form.valid && form.dirty)" value="Add Test" class="btn-submit">
+        </form>
+
+    </div>
+
+</div>

@@ -12,11 +12,11 @@
         <div class="fieldset-container">
             <div class="content">
                 <button type="button" class="btn btn-outline-success btn-rounded" data-mdb-ripple-color="dark"
-                    routerLink="add-patient">ADD PATIENT</button>
+                [routerLink]="' /'+uid">DASH-BOARD</button>
                 <button type="button" class="btn btn-outline-success btn-rounded" data-mdb-ripple-color="dark"
-                    routerLink="list-patient">LIST-PATIENT</button>
+                [routerLink]="'list-token-doc/' + uid">LIST TOKEN</button>
                 <button type="button" class="btn btn-outline-success btn-rounded" data-mdb-ripple-color="dark"
-                    routerLink="list-appointment">LIST-APPOINTMENT</button>
+                [routerLink]="'list-diagnosis-doc/' + uid">LIST-DIAGNOSIS</button>
                 <button type="button" class="btn btn-outline-danger btn-rounded" data-mdb-ripple-color="dark"
                     (click)="logout()">Logout</button>
 
@@ -24,6 +24,7 @@
             <div id="container">
                 <router-outlet></router-outlet>
             </div>
+            <div style="height: 73vh;"></div>
 
         </div>
     </div>

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
-import{ ToastrService } from 'ngx-toastr'
+import{ ToastrService } from 'ngx-toastr';
 import { PatientService } from '../shared/patient.service';
 import { AuthService } from 'src/app/login/shared/auth.service';
 
