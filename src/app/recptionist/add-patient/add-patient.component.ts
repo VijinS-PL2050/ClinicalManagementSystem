@@ -35,7 +35,9 @@ export class AddPatientComponent implements OnInit {
       console.log(result);
       this.resetForm(form);
       //alert ("Sucessfully updated");
-      this.router.navigate(['patient-list']);
+      this.toastr.success('Patient Added Sucessfully');
+      this.router.navigate(['login-recp/list-patient']);
+      
 
     }))
   }
@@ -56,7 +58,7 @@ export class AddPatientComponent implements OnInit {
     alert('Sucessfully addded');
     this.resetForm(form);
     this.toastr.success('Patient Added Sucessfully');
-    this.router.navigate(['patient-list']);
+    this.router.navigate(['login-recp/list-patient']);
    }))
   }
 

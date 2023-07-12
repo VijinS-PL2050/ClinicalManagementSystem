@@ -1,0 +1,101 @@
+<!-- <h2 style="text-align: center;font-size: 200%; font-family: fantasy;">Test Report</h2>
+<br>
+
+<ng-container *ngFor="let report of testReportService.testReport;last as isLast">
+    <ng-container *ngIf="isLast">
+
+        <p>Patient Name : {{ report.testPrescription.diagnosis.tokenGenarator.appointment.patientRecords.patientName}}
+        </p>
+        <p>Patient Age : {{ report.testPrescription.diagnosis.tokenGenarator.appointment.patientRecords.patientAge}}</p>
+        <p>Patient BloodGroup : {{
+            report.testPrescription.diagnosis.tokenGenarator.appointment.patientRecords.patientBlood}}</p>
+        <p>DoctorName : {{ report.testPrescription.diagnosis.tokenGenarator.appointment.doctorDetails.doctorName}}</p>
+
+
+
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+
+                    <th>TestName</th>
+                    <th>HighValue</th>
+                    <th>LowValue</th>
+                    <th>Report</th>
+                    <th>ActualValue</th>
+                    <th>Unit</th>
+                    <th>Action</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{testReportService.testReportGen.testPrescription.tests.testName}}</td>
+                    <td>{{testReportService.testReportGen.testPrescription.tests.highValue}}</td>
+                    <td>{{testReportService.testReportGen.testPrescription.tests.lowValue}}</td>
+                    <td>{{testReportService.testReportGen.report}}</td>
+                    <td>{{testReportService.testReportGen.actualValue}}</td>
+                    <td>{{testReportService.testReportGen.testPrescription.tests.unit}}</td>
+                    <td><button class="btn btn-success" (click)="ReportGenerations(report.rpId)">Generate Bill</button>
+                    </td>
+
+
+
+                </tr>
+            </tbody>
+
+        </table>
+
+        ------------------------------------------------------------------------------------------------------------------ -->
+
+<div class="form-2">
+    <h2>TEST REPORT</h2>
+    <hr>
+
+    <ng-container *ngFor="let report of testReportService.testReport;last as isLast">
+        <ng-container *ngIf="isLast">
+
+            <p>Patient Name : {{
+                report.testPrescription.diagnosis.tokenGenarator.appointment.patientRecords.patientName}}
+            </p>
+            <p>Patient Age : {{ report.testPrescription.diagnosis.tokenGenarator.appointment.patientRecords.patientAge}}
+            </p>
+            <p>Patient BloodGroup : {{
+                report.testPrescription.diagnosis.tokenGenarator.appointment.patientRecords.patientBlood}}</p>
+            <p>DoctorName : {{ report.testPrescription.diagnosis.tokenGenarator.appointment.doctorDetails.doctorName}}
+            </p>
+        </ng-container>
+        <table>
+            <thead style="background-color: rgba(197, 14, 14, 0.397);">
+                <tr>
+
+                    <th>TestName</th>
+                    <th>HighValue</th>
+                    <th>LowValue</th>
+                    <th>Report</th>
+                    <th>ActualValue</th>
+                    <th>Unit</th>
+                    <th>GENERATE BILL</th>
+                </tr>
+
+            </thead>
+            <tbody>
+                <tr>
+
+
+                    <td>{{testReportService.testReportGen.testPrescription.tests.testName}}</td>
+                    <td>{{testReportService.testReportGen.testPrescription.tests.highValue}}</td>
+                    <td>{{testReportService.testReportGen.testPrescription.tests.lowValue}}</td>
+                    <td>{{testReportService.testReportGen.report}}</td>
+                    <td>{{testReportService.testReportGen.actualValue}}</td>
+                    <td>{{testReportService.testReportGen.testPrescription.tests.unit}}</td>
+                    <td><a type="button" (click)="ReportGenerations(report.rpId)" style="margin-left: 10px;"><i
+                                class="bi bi-card-text"
+                                style="font-size: 20px; -webkit-text-stroke-width: 0.2px; color: rgb(255, 115, 0); opacity: 1;"></i></a>
+                    </td>
+
+                </tr>
+            </tbody>
+        </table>
+    </ng-container>
+
+</div>

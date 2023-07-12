@@ -1,0 +1,75 @@
+<!-- <form name="labform" #form="ngForm" autocomplete="false" (ngSubmit)="onSubmit(form)">
+    <input type="hidden" name="rpId" [(ngModel)]="testReportService.formData.rpId">
+
+
+    <div class="form-group">
+        <label>Report</label>
+        <input name="report" #report="ngModel" [(ngModel)]="testReportService.formData.report" class="form-control"
+            placeholder="Enter report" minlength="3" maxlength="25" required>
+        <div class="validation-error" *ngIf="report.touched&& report.invalid">
+            <div>report is required</div>
+        </div>
+    </div>
+    <br>
+    <div class="form-group">
+        <label>reportDate</label>
+        <input type="date" name="reportDate" #reportDate="ngModel" [(ngModel)]="testReportService.formData.reportDate"
+            class="form-control" placeholder="Enter reportDate" required>
+        <div class="validation-error" *ngIf="reportDate.touched&& reportDate.invalid">
+            <div>reportDate is required</div>
+        </div>
+    </div>
+    <br>
+    <div class="form-group">
+        <label>actualValue</label>
+        <input name="actualValue" #actualValue="ngModel" [(ngModel)]="testReportService.formData.actualValue"
+            class="form-control" placeholder="Enter actualValue" required>
+        <div class="validation-error" *ngIf="actualValue.touched&& actualValue.invalid">
+            <div>actualValue is required</div>
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <button type="submit" [disabled]="!(form.valid && form.dirty)"
+            class="btn btn-1g btn-primary form-control">submit</button>
+
+    </div>
+
+</form>
+
+
+------------------------------------------------------------------------------------------------------------------------ -->
+
+
+
+<div class="form-2">
+    <h2> ADD TEST REPORT</h2>
+    <hr>
+    <form name="empForm" #form="ngForm" autocomplete="off" (ngSubmit)="onSubmit(form)">
+        <input type="hidden" name="rpId" [(ngModel)]="testReportService.formData.rpId">
+
+        <div class="fieldset-container">
+            <fieldset>
+                <label>REPORT :</label>
+                <input type="text" name="report" #report="ngModel" [(ngModel)]="testReportService.formData.report"
+                    placeholder="Enter report" minlength="3" maxlength="20" pattern="[A-Za-z][A-Za-z\s]{2,30}[A-Za-z]$"
+                    required>
+                <div class="validation-error" *ngIf="report.touched&& report.invalid">
+                    <div>please enter valid report min: 3 & max: 20</div>
+                </div>
+            </fieldset>
+            <fieldset>
+                <label>actualValue :</label>
+                <input type="text" name="actualValue" #actualValue="ngModel"
+                    [(ngModel)]="testReportService.formData.actualValue" placeholder="Enter actualValue" minlength="1"
+                    maxlength="500" pattern="[A-Za-z\s]{4,}$" required>
+                <div class="validation-error" *ngIf="actualValue.touched&& actualValue.invalid">
+                    <div>please enter valid actualValue min: 1 & max: 500</div>
+                </div>
+            </fieldset>
+
+        </div>
+
+        <input type="submit" [disabled]="!(form.valid && form.dirty)" value="Submit" class="btn-submit">
+    </form>

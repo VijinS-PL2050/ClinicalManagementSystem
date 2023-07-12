@@ -1,0 +1,32 @@
+<h2 style="text-align: center; font-size: 200%; font-family: fantasy;">  Test Bill </h2>
+<br>
+
+<div>
+    <h2>Bill Details</h2>
+    <p> MR NO :{{billTestService.testbill.testPrescription.diagnosis.patientRecords.mrNo}}</p>
+    <p> NAME :{{billTestService.testbill.testPrescription.diagnosis.patientRecords.patientName}}</p>
+    <p> BILL NO :{{billTestService.testbill.billTestNo}}</p>
+    <p> BILL DATE :{{billTestService.testbill.billDate}}</p>
+    <!-- <label class="l1">TEST NAME :<p>{{billTestService.testbill.testPrescription.tests.testName}}</p></label><br>
+    <label class="l1">BILL AMOUNT :<p>{{billTestService.testbill.billAmount}}</p></label><br> -->
+    </div>
+
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>TestName</th>
+                    <th>Bill Amount</th>
+                   
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{billTestService.testbill.testPrescription.tests.testName}}</td>
+                    <td>{{billTestService.testbill.billAmount}}</td>
+                
+       <td> <button class="btn btn-success" (click)="GenerationBill(billTestService.testbill.rpId)">Print Bill</button></td>
+    </tr>
+   </tbody>
+    
+
+

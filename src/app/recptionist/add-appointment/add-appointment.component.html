@@ -1,0 +1,74 @@
+<div class="form-2">
+    <div>
+        <h2>Basics Details</h2>
+        <div class="fieldset-container">
+            <fieldset>
+                <label class="l1">MR NO :<p>{{patient.mrNo}}</p></label>
+                <label class="l1">PHONE NO :<p>{{patient.patientPhone}}</p></label>
+                <label class="l1">AGE :<p>{{patient.patientAge}}</p></label>
+                <label class="l1">BLOOD :<p>{{patient.patientBlood}}</p></label>
+                <label class="l1">REG - DATE :<p>{{patient.registrationDate}}</p></label>
+            </fieldset>
+            <fieldset>
+                <label class="l1">NAME :<p>{{patient.patientName}}</p></label>
+                <label class="l1">ADDRESS :<p>{{patient.patientAddress}}</p></label>
+                <label class="l1">GENDER :<p>{{patient.patientGender}}</p></label>
+                <label class="l1">BLOOD :<p>{{patient.patientBlood}}</p></label>
+                <label class="l1">VALIDITY DATE :<p>{{patient.validityDate}}</p></label>
+            </fieldset>
+        </div>
+        
+        
+    </div>
+    <hr>
+    <form name="empForm" #form="ngForm" autocomplete="off" (ngSubmit)="onSubmit(form)">
+        <input type="hidden" name="pid" [(ngModel)]="appointmentService.formData.pid">
+        <input type="hidden" name="mrNo" [(ngModel)]="appointmentService.formData.aid">
+        <input type="hidden" name="mrNo" [(ngModel)]="appointmentService.formData.bookingNo">
+        <div class="fieldset-container">
+            <fieldset>
+                <label>DEPARTMENT :</label>
+                <select name="did" id="did" class="form-control" required #did="ngModel" (change)="onDepartmentChangeBydId()"
+                    [(ngModel)]="appointmentService.formData.did">
+                    <option value=0 disabled> Choose Department</option>
+                    <option *ngFor="let dept of appointmentService.department" value="{{dept.did}}">
+                        {{dept.departmentName}}</option>
+                </select>
+                    <div class="validation-error" *ngIf="did.touched&& did.invalid">
+                        <div>please select valid department</div>
+                    </div>
+            </fieldset>
+            <fieldset>
+                <label>Doctor :</label>
+                <select name="doId" id="doId" class="form-control" required #doId="ngModel"
+                    [(ngModel)]="appointmentService.formData.doId">
+                    <option value=0 disabled> Choose Doctor</option>
+                    <option *ngFor="let dept of doctordetailsForAppoint" value="{{dept.doId}}">
+                        {{dept.doctorName}}| - |Token Remain-{{dept.noOfToken}}| - |Consulting fee-{{dept.consultationFee}}</option>
+                </select>
+                    <div class="validation-error" *ngIf="doId.touched&& doId.invalid">
+                        <div>please select valid department</div>
+                    </div>
+            </fieldset>
+            
+        </div>
+        <div class="fieldset-container">
+            <fieldset>
+                <label>APPOINTMENT DATE :</label>
+                <input type="datetime-local" name="appointmentDateTime" #appointmentDateTime="ngModel"
+                    [(ngModel)]="appointmentService.formData.appointmentDateTime" min="2023-07-11T00:00" max="2023-07-18T00:00"
+                     required>
+                <div class="validation-error" *ngIf="appointmentDateTime.touched&& appointmentDateTime.invalid">
+                    <div>please provide valid appointment date</div>
+                </div>
+            </fieldset>
+            <fieldset>
+
+            </fieldset>
+
+        </div>
+        
+        
+        <input type="submit" [disabled]="!(form.valid && form.dirty)" value="BOOK APPOINTMENT" class="btn-submit">
+    </form>
+</div>

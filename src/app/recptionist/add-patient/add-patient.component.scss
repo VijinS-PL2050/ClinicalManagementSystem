@@ -21,7 +21,8 @@ body {
 #container {
 	background-color: #696969;
 	border-radius: 5px;
-	padding: 20px 50px; /* Updated padding */
+	padding: 20px 50px;
+	/* Updated padding */
 	margin: 20px auto;
 	max-width: 800px;
 	color: #000000;
@@ -30,9 +31,9 @@ body {
 h2 {
 	color: #5a6af7;
 	text-align: left;
-    padding-left: 30px;
-    padding-bottom: 15px;
-    padding-bottom: 15px;
+	padding-left: 30px;
+	padding-bottom: 15px;
+	padding-bottom: 15px;
 }
 
 fieldset {
@@ -59,18 +60,38 @@ label {
 	width: 50%;
 }
 
-select, input[type="datetime-local"], input[type="submit"], input[type="text"],
-	input[type="number"] {
+select,option,
+input[type="datetime-local"],
+input[type="text"],
+input[type="number"] {
+	color:#ffffff ;
 	width: 100%;
 	padding: 8px;
-	border: 1px solid #000000;
+	background-color:rgba(214, 214, 214, 0);
+	/* Set option background to transparent */
+	border: none;
+	/* Remove option border */
+	border: 1px solid #7becca;
 	border-radius: 5px;
+}
+select option {
+	margin: 40px;
+	background: rgba(0, 225, 255, 0.11);
+	color: #000000;
+	border: 1px solid #7becca;
+	text-shadow: 0 1px 0 rgba(0, 0, 0, 0.4);
+  }
+
+
+::placeholder {
+	color: rgba(118, 184, 223, 0.644);
+	opacity: 1; /* Firefox */
 }
 
 input[type="submit"] {
 	width: 20%;
 	padding: 8px;
-    margin-top: 20px;
+	margin-top: 20px;
 	border: 1px solid #000000;
 	border-radius: 5px;
 }
@@ -90,16 +111,21 @@ input[type="submit"] {
 	background-color: #4caf50;
 }
 
-.form-2{
-    width: 800px;
+.form-2 {
+	width: 800px;
 }
 
-hr { 
-    display: block;
-    margin-top: 0.5em;
-    margin-bottom: 0.5em;
-    margin-left: auto;
-    margin-right: auto;
-    border-style: inset;
-    border-width: 2px;
-  } 
+hr {
+	display: block;
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+	margin-left: auto;
+	margin-right: auto;
+	border-style: inset;
+	border-width: 2px;
+}
+
+
+.validation-error {
+	color: #f35318;
+}

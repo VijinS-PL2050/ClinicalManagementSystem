@@ -18,20 +18,21 @@ export class ListPatientComponent implements OnInit {
   }
 
   //update patient details -- passing the id through
-  updatePatient(patId:number){
-    console.log(patId);
-    this.router.navigate(['edit-patient',patId]);
+  updatePatient(pId:number){
+    console.log(pId);
+    this.router.navigate(['login-recp/edit-patient',pId]);
   }
-  deletePatient(patId:number){
+  deletePatient(pId:number){
     if(confirm('Are you sure delete this patient record ?')){
-      this.patientService.deletePatient(patId).subscribe(response=>{
+      this.patientService.deletePatient(pId).subscribe(response=>{
         this.patientService.BlindListPatients();
         alert("Deleted successfully..");
       },err=>{console.log(err)});
     }
   }
-  bookAppointment(patId:number){
-    console.log('appointment')
+  bookAppointment(pId:number){
+    console.log('appointment form')
+    this.router.navigate(['login-recp/add-appointment',pId]);
   }
 
 }

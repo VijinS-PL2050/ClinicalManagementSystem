@@ -1,0 +1,145 @@
+<!-- <form name="labform" #form="ngForm" autocomplete="false" (ngSubmit)="onSubmit(form)">
+    <input type="hidden" name="ttId" [(ngModel)]="testsService.formData.ttId">
+    
+   
+    <div class="fieldset-container">
+        <fieldset>
+        <label>TestName</label>
+        <input name="testName" #testName="ngModel" [(ngModel)]="testsService.formData.testName"
+            class="form-control" placeholder="Enter TestName" minlength="3" maxlength="25" required>
+        <div class="validation-error" *ngIf="testName.touched&& testName.invalid">
+            <div>TestName is required</div>
+        </div>
+        </fieldset>
+    </div>
+    
+    
+    
+    <br>
+    <div class="fieldset-container">
+        <fieldset>
+        <label>HighValue</label>
+        <input name="highValue" #highValue="ngModel" [(ngModel)]="testsService.formData.highValue"
+            class="form-control" placeholder="Enter highValue" required>
+        <div class="validation-error" *ngIf="highValue.touched&& highValue.invalid">
+            <div>HighValue is required</div>
+        </div>
+        </fieldset>
+        </div>
+       
+       
+        <br>
+        <div class="fieldset-container">
+            <fieldset>
+            <label>LowValue</label>
+            <input name="lowValue" #lowValue="ngModel" [(ngModel)]="testsService.formData.lowValue"
+                class="form-control" placeholder="Enter lowValue" required>
+            <div class="validation-error" *ngIf="lowValue.touched&& lowValue.invalid">
+                <div>LowValue is required</div>
+            </div>
+            </fieldset>
+            </div>
+
+        
+        <br>
+        <div class="fieldset-container">
+            <fieldset>
+            <label>Unit</label>
+            <input name="unit" #unit="ngModel" [(ngModel)]="testsService.formData.unit"
+                class="form-control" placeholder="Enter unit" required>
+            <div class="validation-error" *ngIf="unit.touched&& unit.invalid">
+                <div>Unit is required</div>
+            </div>
+            </fieldset>
+            </div>
+
+        <br>
+        <div class="fieldset-container">
+            <fieldset>
+            <label>TestPrice</label>
+            <input name="testPrice" #testPrice="ngModel" [(ngModel)]="testsService.formData.testPrice"
+                class="form-control" placeholder="Enter testPrice" required>
+            <div class="validation-error" *ngIf="testPrice.touched&& testPrice.invalid">
+                <div>TestPrice is required</div>
+            </div>
+            </fieldset>
+            </div>
+       
+
+            <div class="fieldset-container">
+				<fieldset>
+                <button type="submit" [disabled]="!(form.valid && form.dirty)"
+                class="btn btn-1g btn-primary form-control">submit</button>
+            </fieldset>
+            </div>
+</form> -->
+
+
+<div class="form-2">
+    <h2>Add Test</h2>
+    <hr>
+    <form name="empForm" #form="ngForm" autocomplete="off" (ngSubmit)="onSubmit(form)">
+        <input type="hidden" name="ttId" [(ngModel)]="testsService.formData.ttId">
+
+        <div class="fieldset-container">
+            <fieldset>
+                <label>TestName:</label>
+                <input type="text" name="testName" #testName="ngModel" [(ngModel)]="testsService.formData.testName"
+                    placeholder="Enter testName " minlength="3" maxlength="20"
+                    pattern="[A-Za-z][A-Za-z\s]{2,30}[A-Za-z]$" required>
+                <div class="validation-error" *ngIf="testName.touched&& testName.invalid">
+                    <div>please enter valid testName min: 3 & max: 20</div>
+                </div>
+            </fieldset>
+            <fieldset>
+                <label>HighValue :</label>
+                <input type="text" name="highValue" #highValue="ngModel" [(ngModel)]="testsService.formData.highValue"
+                    placeholder="Enter highValue" type="number" min="80" max="500" required>
+                <div class="validation-error" *ngIf="highValue.touched&& highValue.invalid">
+                    <div>please enter valid highValue b\w 80 - 500</div>
+                </div>
+            </fieldset>
+        </div>
+
+        <div class="fieldset-container">
+            <fieldset>
+                <label>LowValue :</label>
+                <input name="lowValue" #lowValue="ngModel" [(ngModel)]="testsService.formData.lowValue"
+                    placeholder="Enter lowValue" type="number" min="0" max="100" required>
+                <div class="validation-error" *ngIf="lowValue.touched&& lowValue.invalid">
+                    <div>please enter valid lowValue b\w 0 - 100</div>
+                </div>
+            </fieldset>
+            <fieldset>
+                <label>Unit :</label>
+                <select name="unit" id="unit" required #unit="ngModel" [(ngModel)]="testsService.formData.unit">
+                    <option value=0 disabled> Choose unit</option>
+                    <option value="g/dL">g/dL</option>
+                    <option value="g/dL">g/dL</option>
+                    <option value="g/dL">g/dL</option>
+                    <option value="g/L">g/L</option>
+                    <option value="IU/L">IU/L</option>
+                </select>
+                <div class="validation-error" *ngIf="unit.touched && unit.invalid">
+                    <div>unit is required</div>
+                </div>
+            </fieldset>
+        </div>
+        <div class="fieldset-container">
+            <fieldset>
+                <label>TEST PRICE:</label>
+                <input name="testPrice" id="testPrice" type="number" min="200" max="1500" required #testPrice="ngModel"
+                    [(ngModel)]="testsService.formData.testPrice" placeholder="Enter TestPrice" type="number" min="200" max="1500" required>
+
+               
+                <div class="validation-error" *ngIf="testPrice.touched && testPrice.invalid">
+                    <div>please enter valid price b\w 200 - 1500</div>
+                </div>
+            </fieldset>
+            <fieldset>
+
+            </fieldset>
+
+        </div>
+        <input type="submit" [disabled]="!(form.valid && form.dirty)" value="SUBMIT" class="btn-submit">
+    </form>

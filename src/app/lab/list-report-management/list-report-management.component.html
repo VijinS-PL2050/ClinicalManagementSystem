@@ -1,0 +1,89 @@
+<!-- <h2 style="text-align: center;font-size: 200%; font-family: fantasy;">Report Management</h2>
+
+<div class="container">
+    <div class="header">
+        <div class="form-control">
+            <input class="form-control" type="text" placeholder="Search text here.."[(ngModel)]="filter">
+        </div>
+    </div>
+</div><br>
+
+<div class="container">
+    <div class="header">
+    <table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            
+            <th>MrNO</th>
+            <th>patientName</th>
+            <th>Action</th>
+            
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let report of testReportService.testReport | filter:filter|paginate:{itemsPerPage:2,currentPage:page}">
+        
+        <td>{{report.testPrescription.diagnosis.tokenGenarator.appointment.patientRecords.mrNo}}</td>
+        <td>{{report.testPrescription.diagnosis.tokenGenarator.appointment.patientRecords.patientName}}</td>
+               
+   
+  
+
+    <td>
+        <button class="btn btn-success" (click)="ReportGenerate(report.rpId)">Generate Report</button>&nbsp;
+        
+    </td>
+</tr>
+</tbody>
+</table>
+    </div>
+
+----------------------------------------------------------------------------------------------------------------- -->
+
+
+<div class="form-2">
+    <h2>REPORT MANAGEMENT</h2>
+    <hr>
+    <fieldset class="f2">
+        <input class="form-control" type="text" placeholder="Search text here.." [(ngModel)]="filter">
+    </fieldset>
+    <table>
+        <thead style="background-color: rgba(197, 14, 14, 0.397);">
+            <tr>
+            
+                <th>MrNO</th>
+                <th>patientName</th>
+                <th>GENERATE REPORT</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let report of testReportService.testReport | filter:filter|paginate:{itemsPerPage:2,currentPage:page}">
+        
+                <td>{{report.testPrescription.diagnosis.tokenGenarator.appointment.patientRecords.mrNo}}</td>
+                <td>{{report.testPrescription.diagnosis.tokenGenarator.appointment.patientRecords.patientName}}</td>
+                       
+               
+                <td><a type="button" (click)="ReportGenerate(report.rpId)" style="margin-left: 10px;"><i
+                    class='bi bi-calendar2-week'
+                    style="font-size: 20px; -webkit-text-stroke-width: 0.2px; color: rgb(255, 255, 255); opacity: 1;"></i></a></td>
+                
+                
+
+            </tr>
+        </tbody>
+    </table>
+    
+</div>
+<div class="footer">
+    <pagination-controls (pageChange)="page=($event)"></pagination-controls>
+
+</div>
+       
+    
+
+
+
+
+
+

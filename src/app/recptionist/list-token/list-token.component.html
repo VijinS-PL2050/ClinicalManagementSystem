@@ -1,0 +1,38 @@
+<div class="form-2">
+    <h2>APPOINTMENT RECORDS</h2>
+    <hr>
+    <fieldset class="f2">
+        <input class="form-control" type="text" placeholder="Search text here.." [(ngModel)]="filter">
+    </fieldset>
+    <table>
+        <thead style="background-color: rgba(197, 14, 14, 0.397);">
+            <tr>
+                <th>MR NO</th>
+                <th>NAME</th>
+                <th>PHONE</th>
+                <th>TOKEN NO</th>
+                <th>TOKEN-TIME</th>
+                <th>DEPARTMENT</th>
+                <th>DOCTOR</th> 
+            </tr>
+
+        </thead>
+        <tbody>
+            <tr
+                *ngFor="let tempToken of tokenGeneratorService.tokenGenerator | filter:filter | paginate:{itemsPerPage:6,currentPage:page}">
+                <td>{{tempToken.appointment.patientRecords.mrNo}}</td>
+                <td>{{tempToken.appointment.patientRecords.patientName}}</td>
+                <td>{{tempToken.appointment.patientRecords.patientPhone}}</td>
+                <td>{{tempToken.tokenNo}}</td>
+                <td>{{tempToken.tokenTime}}</td>
+                <td>{{tempToken.appointment.doctorDepartment.departmentName}}</td>
+                <td>{{tempToken.appointment.doctorDetails.doctorName}}</td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>
+<div class="footer">
+    <pagination-controls (pageChange)="page=($event)"></pagination-controls>
+
+</div>

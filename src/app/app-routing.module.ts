@@ -7,7 +7,7 @@ const routes: Routes = [
   {path:'login-recp',loadChildren:()=>import('./recptionist/recptionist.module').then(R=>R.RecptionistModule)},
   {path:'login-doc',loadChildren:()=>import('./doctor/doctor.module').then(R=>R.DoctorModule)},
   {path:'login-lab',loadChildren:()=>import('./lab/lab.module').then(R=>R.LabModule)},
-  {path:'login-pharma',loadChildren:()=>import('./pharma/pharma.module').then(R=>R.PharmaModule)}
+  {path:'login-pharma',loadChildren:()=>import('./pharma/pharma.module').then(R=>R.PharmaModule)},
 ];
 
 @NgModule({
