@@ -10,12 +10,18 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { DoctorRoutingModule } from './doctor-routing.module';
 import { DashDocComponent } from './dash-doc/dash-doc.component';
 import { DoctorComponent } from './doctor.component';
+import { ListTokenComponent } from './list-token/list-token.component';
+import { AddDiagnosisComponent } from './add-diagnosis/add-diagnosis.component';
+import { ListDiagnosisComponent } from './list-diagnosis/list-diagnosis.component';
 
 
 @NgModule({
   declarations: [
     DashDocComponent,
-    DoctorComponent
+    DoctorComponent,
+    ListTokenComponent,
+    AddDiagnosisComponent,
+    ListDiagnosisComponent
   ],
   imports: [
     CommonModule,
