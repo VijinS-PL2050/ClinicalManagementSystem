@@ -9,8 +9,8 @@ import { TestPrescription } from './test-prescription';
 })
 export class TestPrescriptionService {
   testPrescription:TestPrescription[]=[];
-  testPrescriptionForCur:TestPrescription[]=[];
   formData:TestPrescription=new TestPrescription();
+tests: any;
 
   constructor(private httpClient: HttpClient) { 
 
@@ -23,9 +23,13 @@ export class TestPrescriptionService {
   }
 
    //list current testpresciption
-   get_Testprescription_bY_passingtdiId(diId:number){
+   get_Testprescription_bY_passingtdiId(diId:number): Observable<any>{
     console.log(diId);
-    this.httpClient.get(environment.apiUrl+"/api/test/"+diId).toPromise().then(getTestPres=>this.testPrescriptionForCur=getTestPres as TestPrescription[] );
+    return this.httpClient.get(environment.apiUrl+"/api/test/"+diId);
+  }
+  //delete test
+  deleteTest(tpId:number): Observable<any> {
+    return this.httpClient.delete(environment.apiUrl+"/api/deletetest/"+tpId);
   }
   
 }

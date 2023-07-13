@@ -10,6 +10,7 @@ import { MedicinePrescriptionService } from '../shared/medicine-prescription.ser
 import { TestReportService } from '../shared/test-report.service';
 import { TestPrescriptionService } from '../shared/test-prescription.service';
 import { MedicinePrescription } from '../shared/medicine-prescription';
+import { TestPrescription } from '../shared/test-prescription';
 
 @Component({
   selector: 'app-add-diagnosis',
@@ -30,6 +31,7 @@ export class AddDiagnosisComponent implements OnInit {
   showFormTest: boolean = false;
 
   medicinePrescriptionForCur: MedicinePrescription[] = [];
+  testPrescriptionServiceForCur: TestPrescription[]=[];
 
   constructor(public patientService: PatientService,
     public diagnosisService: DiagnosisService,
@@ -150,7 +152,7 @@ export class AddDiagnosisComponent implements OnInit {
   FetchCurrentMed(diId: number) {
     console.log('fetching ....');
     this.medicinePrescriptionService.get_Medicineprescription_bY_passingtdiId(this.diId).subscribe((curListMed => {
-      console.log('fetching currentt medicine');
+      console.log('fetching current medicine');
       console.log(curListMed);
       this.medicinePrescriptionForCur = curListMed;
     }));
@@ -179,9 +181,31 @@ export class AddDiagnosisComponent implements OnInit {
     this.testPrescriptionService.addTest(form.value).subscribe((result => {
       console.log(result);
       alert('Sucessfully addded');
+      this.FetchCurrentTest(this.diId);
       this.resetForm(form);
       this.toastr.success('Diagnosis Added Sucessfully');
       this.router.navigate(['list-token-doc', this.uid]);
+    }))
+  }
+
+  FetchCurrentTest(diId: number) {
+    console.log('fetching ....');
+    this.testPrescriptionService.get_Testprescription_bY_passingtdiId(this.diId).subscribe((curListTest => {
+      console.log('fetching current test');
+      console.log(curListTest);
+      this.testPrescriptionServiceForCur = curListTest;
+    }));
+  }
+  updateDiagnosis(form: NgForm) {
+    console.log("Updating");
+    this.diagnosisService.updateDiagnosis(form.value).subscribe((result=>{
+      console.log(result);
+      this.resetForm(form);
+      //alert ("Sucessfully updated");
+      this.toastr.success('Diagnosis Added Sucessfully');
+      this.router.navigate(['login-doc/:uid/add-diagnosis']);
+
+
     }))
   }
 
@@ -193,4 +217,13 @@ export class AddDiagnosisComponent implements OnInit {
         })
       }
     }
+
+    deleteTest(tpId: number) {
+      if (confirm("Are you sure you want to delete test")) {
+          this.testPrescriptionService.deleteTest(tpId).subscribe(res => {
+            alert("Deleted successfully..");
+            this.FetchCurrentTest(this.diId);
+          })
+        }
+      }
 }

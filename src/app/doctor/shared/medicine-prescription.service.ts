@@ -8,6 +8,9 @@ import { MedicinePrescription } from './medicine-prescription';
   providedIn: 'root'
 })
 export class MedicinePrescriptionService {
+  get_Testprescription_bY_passingtdiId(diId: number) {
+    throw new Error('Method not implemented.');
+  }
   medicinePrescription: MedicinePrescription[] = [];
   formData: MedicinePrescription = new MedicinePrescription();
 

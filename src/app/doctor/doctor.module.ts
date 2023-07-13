@@ -13,6 +13,7 @@ import { DoctorComponent } from './doctor.component';
 import { ListTokenComponent } from './list-token/list-token.component';
 import { AddDiagnosisComponent } from './add-diagnosis/add-diagnosis.component';
 import { ListDiagnosisComponent } from './list-diagnosis/list-diagnosis.component';
+import { EditDiagnosisComponent } from './edit-diagnosis/edit-diagnosis.component';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { ListDiagnosisComponent } from './list-diagnosis/list-diagnosis.componen
     DoctorComponent,
     ListTokenComponent,
     AddDiagnosisComponent,
-    ListDiagnosisComponent
+    ListDiagnosisComponent,
+    EditDiagnosisComponent
   ],
   imports: [
     CommonModule,

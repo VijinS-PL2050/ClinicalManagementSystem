@@ -50,8 +50,20 @@ export class DiagnosisService {
     this.httpClient.get(environment.apiUrl+"/api/getAllTest").toPromise().then(listTest=>this.test=listTest as Test[] );
   }
 
-  //get diadnosis id
+  //get diagnosis id
   GetDiIdByTid(tId:number): Observable<any>{
     return this.httpClient.get(environment.apiUrl+"/api/getDiagnosisIdBytId/"+tId);
   }
+
+   //get a particular diagnosis
+   getDiagnosis(diId:number):Observable<any>{
+    console.log(diId);
+    return this.httpClient.get(environment.apiUrl+"/api/diagnosisbydId/"+diId);
+
+  }
+    //update diagnosis
+    updateDiagnosis(diag:Diagnosis):Observable<any>{
+      console.log("update");
+      return this.httpClient.put(environment.apiUrl+"/api/updatediagnosis",diag);
+    }
 }

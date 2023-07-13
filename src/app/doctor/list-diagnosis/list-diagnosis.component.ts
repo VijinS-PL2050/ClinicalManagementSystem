@@ -22,8 +22,9 @@ export class ListDiagnosisComponent implements OnInit {
     console.log(this.uId);
     this.diagnosisService.BindListToken(this.uId);
   }
-  updateDiagnosis(tId:number){
-    console.log('deleting ... '+tId);
+  updateDiagnosis(diId:number){
+    console.log('deleting ... '+diId);
+    this.router.navigate(['login-doc/:uid/edit-diagnosis',diId])
 
   }
 }

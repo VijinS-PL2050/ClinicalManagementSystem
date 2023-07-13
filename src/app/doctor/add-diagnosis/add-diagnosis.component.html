@@ -54,7 +54,8 @@
 
         </div>
         <div *ngIf="showDetailsMed">
-            <caption>Previous Medicine</caption><hr>
+            <caption>Previous Medicine</caption>
+            <hr>
             <table>
                 <thead style="background-color: rgba(197, 14, 14, 0.397);">
                     <tr>
@@ -82,7 +83,8 @@
             </table>
         </div>
         <div *ngIf="showDetailsTest">
-            <caption>Previous Test</caption> <hr>
+            <caption>Previous Test</caption>
+            <hr>
             <table>
                 <thead style="background-color: rgba(197, 14, 14, 0.397);">
                     <tr>
@@ -158,15 +160,9 @@
             <label class="btn btn-outline-primary" for="btn-check-outlined-1" (click)="toggleFormTest()"
                 style="width: 100%; padding-left: 30%;">ADD TEST</label>
         </fieldset>
-
-
-
     </div>
 
     <div *ngIf="showFormMed">
-
-
-
         <div class="fieldset-container">
             <fieldset>
                 <form name="medForm" #form="ngForm" autocomplete="off" (ngSubmit)="onSubmitForMed(form)">
@@ -206,92 +202,79 @@
 
             </fieldset>
             <fieldset>
-                <caption style="padding-left: 10%;">Current Medicine</caption><hr>
-            <table>
-                <thead style="background-color: rgba(197, 14, 14, 0.397);">
-                    <tr>
-                        <th>MEDCINE NAME</th>
-                        <th>DOSAGE</th>
-                        <th>NO OF DAYS</th>
-                        <th>ACTION</th>
-                    </tr>
+                <caption style="padding-left: 10%;">Current Medicine</caption>
+                <hr>
+                <table>
+                    <thead style="background-color: rgba(197, 14, 14, 0.397);">
+                        <tr>
+                            <th>MEDCINE NAME</th>
+                            <th>DOSAGE</th>
+                            <th>NO OF DAYS</th>
+                            <th>ACTION</th>
+                        </tr>
 
-                </thead>
-                <tbody>
-                    <tr *ngFor="let tempMed of medicinePrescriptionForCur">
-                        <td>{{tempMed.medicinesStock.medicineName}}</td>
-                        <td>{{tempMed.dosage.dosage}}</td>
-                        <td>{{tempMed.noOfDay}}</td>
-                        <td><a type="button" (click)="deleteMedicine(tempMed.mpId)" style="margin-left: 10px;"><i
-                            class="bi bi-trash"
-                            style="font-size: 20px; -webkit-text-stroke-width: 0.2px; color: rgb(255, 115, 0); opacity: 1;"></i></a></td>
-                    </tr>
-                </tbody>
-            </table>
-                
-
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let tempMed of medicinePrescriptionForCur">
+                            <td>{{tempMed.medicinesStock.medicineName}}</td>
+                            <td>{{tempMed.dosage.dosage}}</td>
+                            <td>{{tempMed.noOfDay}}</td>
+                            <td><a type="button" (click)="deleteMedicine(tempMed.mpId)" style="margin-left: 10px;"><i
+                                        class="bi bi-trash"
+                                        style="font-size: 20px; -webkit-text-stroke-width: 0.2px; color: rgb(255, 115, 0); opacity: 1;"></i></a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
             </fieldset>
-
-            
-
         </div>
-
-
-
-
-
     </div>
-
 </div>
 
 
 
 <hr>
 <div>
-
     <div *ngIf="showFormTest">
-
-        <form name="medForm" #form="ngForm" autocomplete="off" (ngSubmit)="onSubmitForTest(form)">
-            <input type="hidden" name="tpId" [(ngModel)]="testPrescriptionService.formData.tpId">
-            <input type="hidden" name="testDay" [(ngModel)]="testPrescriptionService.formData.testDay">
-            <div class="fieldset-container">
-                <fieldset>
-                    <label>TEST NAME :</label>
-                    <select name="ttId" id="ttId" class="form-control" required #ttId="ngModel"
-                        [(ngModel)]="testPrescriptionService.formData.ttId">
-                        <option value=0 disabled> Choose Test</option>
-                        <option *ngFor="let test of diagnosisService.test" value="{{test.ttId}}">
-                            {{test.testName}}</option>
-                    </select>
-                    <div class="validation-error" *ngIf="ttId.touched&& ttId.invalid">
-                        <div>please choose valid test</div>
-                    </div>
-                </fieldset>
-                <fieldset>
-
-                </fieldset>
-
-                <fieldset>
-                    <label>TEST NAME :</label>
-                    <select name="ttId" id="ttId" class="form-control" required #ttId="ngModel"
-                        [(ngModel)]="testPrescriptionService.formData.ttId">
-                        <option value=0 disabled> Choose Test</option>
-                        <option *ngFor="let test of diagnosisService.test" value="{{test.ttId}}">
-                            {{test.testName}}</option>
-                    </select>
-                    <div class="validation-error" *ngIf="ttId.touched&& ttId.invalid">
-                        <div>please choose valid test</div>
-                    </div>
-                </fieldset>
-                <fieldset>
-
-                </fieldset>
-
-
-            </div>
-            <input type="submit" [disabled]="!(form.valid && form.dirty)" value="Add Test" class="btn-submit">
-        </form>
-
+        <div class="fieldset-container">
+            <fieldset>
+                <form name="medForm" #form="ngForm" autocomplete="off" (ngSubmit)="onSubmitForTest(form)">
+                    <input type="hidden" name="tpId" [(ngModel)]="testPrescriptionService.formData.tpId">
+                            <label>TEST NAME :</label>
+                            <select name="ttId" id="ttId" class="form-control" required #ttId="ngModel"
+                                [(ngModel)]="testPrescriptionService.formData.ttId">
+                                <option value=0 disabled> Choose Test</option>
+                                <option *ngFor="let test of diagnosisService.test" value="{{test.ttId}}">
+                                    {{test.testName}}</option>
+                            </select>
+                            <div class="validation-error" *ngIf="ttId.touched&& ttId.invalid">
+                                <div>please choose valid test</div>
+                            </div>
+                    <input type="submit" [disabled]="!(form.valid && form.dirty)" value="Add Test" class="btn-submit">
+                </form>
+            </fieldset>
+            <fieldset>
+                <caption style="padding-left: 10%;">Current Test</caption>
+                    <hr>
+                    <table>
+                        <thead style="background-color: rgba(197, 14, 14, 0.397);">
+                            <tr>
+                                <th>TEST NAME</th>
+                                <th>ACTION</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let tempTest of testPrescriptionServiceForCur">
+                                <td>{{tempTest.tests.testName}}</td>
+                                <td><a type="button" (click)="deleteTest(tempTest.tpId)"
+                                        style="margin-left: 10px;"><i class="bi bi-trash"
+                                            style="font-size: 20px; -webkit-text-stroke-width: 0.2px; color: rgb(255, 115, 0); opacity: 1;"></i></a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+            </fieldset>
+        </div>
     </div>
 
 </div>
